@@ -1,0 +1,6 @@
+##Arquivos para instalar##
+##pip install -r requirements.txt##
+assemblyai
+watchdog
+##Gerar APP##
+##pyinstaller --onefile --noconsole .\app.py##
