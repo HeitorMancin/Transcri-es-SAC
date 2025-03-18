@@ -29,10 +29,6 @@ Este projeto tem como objetivo monitorar uma pasta de uploads em busca de arquiv
    git clone <URL_DO_REPOSITORIO>
    cd <NOME_DO_REPOSITORIO>
 Crie e ative um ambiente virtual (opcional, mas recomendado):
-
-bash
-Copiar
-Editar
 python -m venv venv
 # No Linux/MacOS:
 source venv/bin/activate
