@@ -60,7 +60,7 @@ O código inclui uma configuração para corrigir interpretações errôneas de 
     "@": ["Arroba"],
 })`
 
-_ Enquanto o script estiver em execução:
+ - Enquanto o script estiver em execução:
 
 - Ele monitora a pasta definida em UPLOAD_FOLDER por novos arquivos .wav;
 - Ao detectar um arquivo válido (que contenha as pré-definições no nome), inicia um processo em background para:
