@@ -8,10 +8,9 @@ import assemblyai as aai
 from time import sleep
 
 # Configurações
-UPLOAD_FOLDER = "C://Users//hmancini//OneDrive - Biolab Sanus Farmaceutica Ltda//Área de Trabalho//uploads" 
-#UPLOAD_FOLDER = "//ssac01//Gravacoes"
-TRANSCRICOES_FOLDER = "C://Users//hmancini//OneDrive - Biolab Sanus Farmaceutica Ltda//Área de Trabalho//transcricoes"
-API_KEY = "b32c5d8625d74cc4ade5ed68a37e255b"
+UPLOAD_FOLDER = "" # Sua pasta que irá ser monitorada
+TRANSCRICOES_FOLDER = "" # Sua pasta de destino das transcrições
+API_KEY = "" # Sua API AssemblyAI
 LOG_FILE = "transcription_log.txt"
 MAX_RETRIES = 3  # Número máximo de tentativas para cada etapa
 RETRY_DELAY = 30  # Tempo de espera entre tentativas em segundos
@@ -52,7 +51,7 @@ def arquivo_estavel(caminho_audio):
         if not os.path.exists(caminho_audio):
             return False
             
-        tamanho_atual = os.path.getsize(caminho_audio)
+        tamanho_atual = os.path.getsize(caminho_audio) # Identificação dos tamanhos do árquivo para identificar se está estável.
         estavel = tamanho_inicial == tamanho_atual
         
         if estavel:
@@ -90,15 +89,12 @@ def transcrever_audio(caminho_audio, ramal):
         # Configuração de ortografia personalizada
         config.set_custom_spelling({
             "@": ["Arroba"],
-            "Avert": ["Aberti", "Averti", "Aberte", "Averte", "Abilab"],
-            "Farma": ["Pharma"],
-            "Biolab": ["abelab"]
         })
 
         # Ativa LeMur com prompt padrão
         transcript = tentar_transcricao(transcriber, caminho_audio, config)
-        prompt = """Faça um resumo e uma análise de sentimentos da transcrição,
-                    Faça também um resumo dos sentimentos gerais de cada pessoa na ligação"""
+        prompt = """
+                    """ # Prompt para IA 
 
         if transcript.status == aai.TranscriptStatus.error:
             logging.error(f"Erro na transcrição: {transcript.error}")
@@ -172,8 +168,8 @@ class AudioHandler(FileSystemEventHandler):
                 ramal = extrair_ramal_pasta(event.src_path)
                 
                 # Verifica se o arquivo atende aos critérios para transcrição
-                if ramal and ("SAC BIOLAB" in file_name or "SAUDE ANIMAL" in file_name or "vmail" in file_name.lower()):
-                    logging.info(f"Arquivo detectado: {event.src_path} (Ramal: {ramal})")
+                if ramal and ("" in file_name or "" in file_name or "" in file_name.lower()):  # Filtro para detectar apenas determinados áudios
+                    logging.info(f"Arquivo detectado: {event.src_path} (Ramal: {ramal})")  
                     
                     # Marca o arquivo como em processamento
                     arquivos_em_processamento[event.src_path] = True
