@@ -41,7 +41,7 @@ venv\Scripts\activate
 Instale as dependências necessárias:
 pip install watchdog assemblyai
 
-
+# Tutorial
 No início do script, configure os caminhos de Uploads e Transcrições:
 UPLOAD_FOLDER = ""
 TRANSCRICOES_FOLDER = ""
